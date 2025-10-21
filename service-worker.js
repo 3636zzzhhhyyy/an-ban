@@ -1,15 +1,15 @@
 const CACHE_NAME = 'anban-cache-v1';
 const OFFLINE_URL = 'offline.html';
 const urlsToCache = [
-  './',
-  'index.html',
-  'css/style.css',
-  'js/main.js',
-  'js/particles.min.js',
-  'manifest.json',
-  'icons/icon-72x72.png',
-  'icons/icon-192x192.png',
-  'icons/icon-512x512.png'
+  '/an-ban/',
+  '/an-ban/index.html',
+  '/an-ban/css/style.css',
+  '/an-ban/js/main.js',
+  '/an-ban/js/particles.min.js',
+  '/an-ban/manifest.json',
+  '/an-ban/icons/icon-72x72.png',
+  '/an-ban/icons/icon-192x192.png',
+  '/an-ban/icons/icon-512x512.png'
 ];
 
 // 安装Service Worker
