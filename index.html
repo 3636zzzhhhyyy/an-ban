@@ -155,7 +155,7 @@
             // 注册Service Worker
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('service-worker.js')
+                    navigator.serviceWorker.register('/an-ban/service-worker.js')
                         .then(registration => {
                             console.log('ServiceWorker注册成功:', registration.scope);
                         })
