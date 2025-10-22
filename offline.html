@@ -4,55 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安伴 - 离线模式</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
-            padding: 50px 20px;
-        }
-        .offline-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #4b0082;
-            margin-bottom: 20px;
-        }
-        p {
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .icon {
-            font-size: 60px;
-            color: #4b0082;
-            margin-bottom: 20px;
-        }
-        button {
-            background: #4b0082;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #3a0068;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="offline-container">
-        <div class="icon">⚠️</div>
-        <h1>您处于离线状态</h1>
-        <p>当前网络连接不可用，部分功能可能受限。请检查网络连接后刷新页面。</p>
-        <button onclick="window.location.reload()">刷新页面</button>
+    <div class="container">
+        <div class="offline-content">
+            <div class="offline-icon">
+                <i class="fas fa-wifi-slash"></i>
+            </div>
+            <h1>您处于离线状态</h1>
+            <p>当前网络连接不可用，部分功能可能受限。请检查网络连接后刷新页面。</p>
+            <button class="btn" onclick="window.location.reload()">
+                <i class="fas fa-sync-alt"></i> 刷新页面
+            </button>
+        </div>
     </div>
+    <script src="js/main.js"></script>
+    <script>
+        // 检查网络状态
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+
+        // 注册Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/an-ban/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker注册成功:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker注册失败:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
