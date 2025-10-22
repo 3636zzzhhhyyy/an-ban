@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/an-ban/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="/an-ban/js/particles.min.js"></script>
 </head>
 <body>
     <!-- 头部 Banner -->
@@ -33,7 +34,72 @@
             <p class="subtitle fade-in delay-1">期待与您合作，共同守护老年人安全</p>
         </div>
     </header>
+    <script src="/an-ban/js/main.js"></script>
+    <script>
+        // 初始化粒子效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 确保粒子容器存在
+            const particlesContainer = document.getElementById('particles-js');
+            if (!particlesContainer) {
+                console.error('粒子容器未找到');
+                return;
+            }
 
+            // 检查particlesJS是否加载
+            if (typeof particlesJS === 'function') {
+                initParticles();
+            } else {
+                // 备用加载
+                const script = document.createElement('script');
+                script.src = '/an-ban/js/particles.min.js';
+                script.onload = initParticles;
+                script.onerror = function() {
+                    console.error('粒子库加载失败');
+                    particlesContainer.style.display = 'none';
+                };
+                document.head.appendChild(script);
+            }
+
+            function initParticles() {
+                try {
+                    particlesJS('particles-js', {
+                        particles: {
+                            number: { value: 80, density: { enable: true, value_area: 800 } },
+                            color: { value: "#ffffff" },
+                            shape: { type: "circle" },
+                            opacity: { value: 0.5, random: true },
+                            size: { value: 3, random: true },
+                            line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                            move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                        },
+                        interactivity: {
+                            detect_on: "canvas",
+                            events: {
+                                onhover: { enable: true, mode: "repulse" },
+                                onclick: { enable: true, mode: "push" }
+                            }
+                        }
+                    });
+                    console.log('粒子效果初始化成功');
+                } catch (error) {
+                    console.error('粒子效果初始化失败:', error);
+                }
+            }
+
+            // 注册Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/an-ban/service-worker.js')
+                        .then(registration => {
+                            console.log('ServiceWorker注册成功:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('ServiceWorker注册失败:', error);
+                        });
+                });
+            }
+        });
+    </script>
     <!-- 联系我们 -->
     <section class="contact-section">
         <div class="container">
@@ -109,20 +175,7 @@
         </div>
     </footer>
 
-    <script src="/an-ban/js/main.js"></script>
-    <script>
-        // 注册Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/an-ban/service-worker.js')
-                    .then(registration => {
-                        console.log('ServiceWorker注册成功:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker注册失败:', error);
-                    });
-            });
-        }
-    </script>
+    <!-- 粒子效果容器 -->
+    <div id="particles-js"></div>
 </body>
 </html>
