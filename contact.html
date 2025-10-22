@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安伴 - 智能防摔手表 | 联系我们</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="js/particles.min.js"></script>
 </head>
 <body>
     <!-- 头部 Banner -->
@@ -19,11 +22,11 @@
                 </div>
                 <div class="nav-links">
                     <ul>
-                        <li><a href="/index.html"><i class="fas fa-home"></i> 首页</a></li>
-                        <li><a href="/product.html"><i class="fas fa-info-circle"></i> 产品介绍</a></li>
-                        <li><a href="/solution.html"><i class="fas fa-lightbulb"></i> 解决方案</a></li>
-                        <li><a href="/team.html"><i class="fas fa-users"></i> 团队介绍</a></li>
-                        <li><a href="/contact.html" class="active"><i class="fas fa-phone-alt"></i> 联系我们</a></li>
+                        <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                        <li><a href="product.html"><i class="fas fa-info-circle"></i> 产品介绍</a></li>
+                        <li><a href="solution.html"><i class="fas fa-lightbulb"></i> 解决方案</a></li>
+                        <li><a href="team.html"><i class="fas fa-users"></i> 团队介绍</a></li>
+                        <li><a href="contact.html" class="active"><i class="fas fa-phone-alt"></i> 联系我们</a></li>
                     </ul>
                 </div>
             </nav>
@@ -92,9 +95,9 @@
                 </div>
                 <div class="footer-column fade-in delay-1">
                     <h3>快速链接</h3>
-                    <p><a href="/index.html">首页</a></p>
-                    <p><a href="/product.html">产品介绍</a></p>
-                    <p><a href="/solution.html">解决方案</a></p>
+                    <p><a href="index.html">首页</a></p>
+                    <p><a href="product.html">产品介绍</a></p>
+                    <p><a href="solution.html">解决方案</a></p>
                 </div>
                 <div class="footer-column fade-in delay-2">
                     <h3>联系我们</h3>
@@ -107,6 +110,20 @@
         </div>
     </footer>
 
-    <script src="/js/main.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 注册Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/an-ban/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker注册成功:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker注册失败:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
